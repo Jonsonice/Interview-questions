@@ -70,8 +70,9 @@ JavaScript：
   	<area> <base> <col> <command> <embed> <keygen> <param> <source> <track> <wbr>
 
   不同浏览器（版本）、HTML4（5）、CSS2等实际略有差异
-  参考: [http://stackoverflow.com/questions/6867254/browsers-default-css-for-html-elements](http://stackoverflow.com/questions/6867254/browsers-default-css-for-html-elements)
 ```
+  参考: [http://stackoverflow.com/questions/6867254/browsers-default-css-for-html-elements](http://stackoverflow.com/questions/6867254/browsers-default-css-for-html-elements)
+
 #### 4. 页面导入样式时，使用link和@import有什么区别？
 ```
   （1）link属于XHTML标签，除了加载CSS外，还能用于定义RSS, 定义rel连接属性等作用；而@import是CSS提供的，只能用于加载CSS;
@@ -97,9 +98,10 @@ Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]
   Gecko内核：Netscape6及以上版本，FF,MozillaSuite/SeaMonkey等
   Presto内核：Opera7及以上。      [Opera内核原为：Presto，现为：Blink;]
   Webkit内核：Safari,Chrome等。   [ Chrome的：Blink（WebKit的分支）]
+```
 
 详细文章：[浏览器内核的解析和对比](http://www.cnblogs.com/fullhouse/archive/2011/12/19/2293455.html)
-```
+
 #### 7. html5有哪些新特性、移除了那些元素？如何处理HTML5新标签的浏览器兼容问题？如何区分 HTML 和 HTML5？
 ```
   * HTML5 现在已经不是 SGML 的子集，主要是关于图像，位置，存储，多任务等功能的增加。
@@ -160,12 +162,15 @@ Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]
 [HTML5 离线缓存-manifest简介](https://yanhaijing.com/html/2014/12/28/html5-manifest/)
 
 [有趣的HTML5：离线存储](https://segmentfault.com/a/1190000000732617)
+
 #### 10. 浏览器是怎么对HTML5的离线储存资源进行管理和加载的呢？
 ```
   在线的情况下，浏览器发现html头部有manifest属性，它会请求manifest文件，如果是第一次访问app，那么浏览器就会根据manifest文件的内容下载相应的资源并且进行离线存储。如果已经访问过app并且资源已经离线存储了，那么浏览器就会使用离线的资源加载页面，然后浏览器会对比新的manifest文件与旧的manifest文件，如果文件没有发生改变，就不做任何操作，如果文件改变了，那么就会重新下载文件中的资源并进行离线存储。
   离线的情况下，浏览器就直接使用离线存储的资源。
 ```
+
 详细请参考：[有趣的HTML5：离线存储](https://segmentfault.com/a/1190000000732617)
+
 #### 11. 请描述一下 cookies，sessionStorage 和 localStorage 的区别？
 ```
   cookie是网站为了标示用户身份而储存在用户本地终端（Client Side）上的数据（通常经过加密）。
@@ -255,6 +260,8 @@ Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]
   应该准确使用语义样式标签, 但不能滥用, 如果不能确定时首选使用自然样式标签。
 ```
 [回到顶部](#top)
+[HTML篇](#html)
+[CSS篇](#css)
 ### <div id="css"><div>CSS篇
 #### 1. 介绍一下标准的CSS的盒子模型？低版本IE的盒子模型有什么不同的？
 ```
@@ -598,8 +605,9 @@ Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]
 ```
   外边距合并指的是，当两个垂直外边距相遇时，它们将形成一个外边距。
   合并后的外边距的高度等于两个发生合并的外边距的高度中的较大者。
-  [w3school介绍网址](http://www.w3school.com.cn/css/css_margin_collapsing.asp)
 ```
+  [w3school介绍网址](http://www.w3school.com.cn/css/css_margin_collapsing.asp)
+
 #### 22. zoom:1的清除浮动原理?
 ```
   清除浮动，触发hasLayout；
@@ -614,3 +622,59 @@ Trident内核：IE,MaxThon,TT,The World,360,搜狗浏览器等。[又称MSHTML]
   目前非ie由于不支持这个属性，它们又是通过什么属性来实现元素的缩放呢？
   可以通过css3里面的动画属性scale进行缩放。
 ```
+#### 23. ::before 和 :after中双冒号和单冒号 有什么区别？解释一下这2个伪元素的作用
+```
+  单冒号(:)用于CSS3伪类，双冒号(::)用于CSS3伪元素。（伪元素由双冒号和伪元素名称组成）
+  双冒号是在当前规范中引入的，用于区分伪类和伪元素。不过浏览器需要同时支持旧的已经存在的伪元素写法，
+  比如:first-line、:first-letter、:before、:after等，
+  而新的在CSS3中引入的伪元素则不允许再支持旧的单冒号的写法。
+
+  想让插入的内容出现在其它内容前，使用::before，否者，使用::after；
+  在代码顺序上，::after生成的内容也比::before生成的内容靠后。
+  如果按堆栈视角，::after生成的内容会在::before生成的内容之上
+```
+#### 24. 如何修改chrome记住密码后自动填充表单的黄色背景 ？
+```
+  input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background-color: rgb(250, 255, 189); /* #FAFFBD; */
+    background-image: none;
+    color: rgb(0, 0, 0);
+  }
+```
+#### 25. 怎么让Chrome支持小于12px 的文字？
+```
+  1、用图片：如果是内容固定不变情况下，使用将小于12px文字内容切出做图片，这样不影响兼容也不影响美观。
+  2、使用12px及12px以上字体大小：为了兼容各大主流浏览器，建议设计美工图时候设置大于或等于12px的字体大小，如果是接单的这个时候就需要给客户讲解小于12px浏览器不兼容等事宜。
+  3、继续使用小于12px字体大小样式设置：如果不考虑chrome可以不用考虑兼容，同时在设置小于12px对象设置-webkit-text-size-adjust:none，做到最大兼容考虑。
+  4、使用12px以上字体：为了兼容、为了代码更简单 从新考虑权重下兼容性。
+```
+#### 26. 让页面里的字体变清晰，变细用CSS怎么做？
+```  -webkit-font-smoothing: antialiased;```  
+#### 27. position:fixed;在android下无效怎么处理？
+```
+  fixed的元素是相对整个页面固定位置的，你在屏幕上滑动只是在移动这个所谓的viewport，
+  原来的网页还好好的在那，fixed的内容也没有变过位置，
+  所以说并不是iOS不支持fixed，只是fixed的元素不是相对手机屏幕固定的。
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+```
+#### 28. 如果需要手动写动画，你认为最小时间间隔是多久，为什么？（阿里）
+```  多数显示器默认频率是60Hz，即1秒刷新60次，所以理论上最小间隔为1/60＊1000ms ＝ 16.7ms
+```
+#### 29. display:inline-block 什么时候会显示间隙？(携程)
+```
+  移除空格、使用margin负值、使用font-size:0、letter-spacing、word-spacing
+```
+#### 30. 什么是Cookie 隔离？（或者说：请求资源的时候不要让它带cookie怎么做）
+```
+  如果静态文件都放在主域名下，那静态文件请求的时候都带有的cookie的数据提交给server的，非常浪费流量，
+  所以不如隔离开。
+
+  因为cookie有域的限制，因此不能跨域提交请求，故使用非主要域名的时候，请求头中就不会带有cookie数据，
+  这样可以降低请求头的大小，降低请求时间，从而达到降低整体请求延时的目的。
+
+  同时这种方式不会将cookie传入Web Server，也减少了Web Server对cookie的处理分析环节，
+  提高了webserver的http请求的解析速度。
+```
+[回到顶部](#top)
+[HTML篇](#html)
+[CSS篇](#css)
